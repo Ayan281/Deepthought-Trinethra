@@ -1,0 +1,147 @@
+{
+  "rubric": {
+    "title": "Fellow Performance Rubric",
+    "description": "1-10 scale assessing Fellow performance based on supervisor feedback",
+    "levels": [
+      {
+        "range": [1, 2],
+        "label": "Disengaged / Absent",
+        "description": "Fellow is rarely present, contributes nothing, supervisor sees no value. Relationships are poor or absent.",
+        "indicators": [
+          "Not showing up consistently",
+          "No visible contribution",
+          "Team or supervisor frustrated",
+          "No systems being built"
+        ]
+      },
+      {
+        "range": [3, 4],
+        "label": "Present but Ineffective",
+        "description": "Fellow shows up and tries but produces little visible output. May be learning but hasn't contributed yet.",
+        "indicators": [
+          "Present but not proactive",
+          "Tasks done only when assigned",
+          "Minimal initiative",
+          "Relationships developing but not strong"
+        ]
+      },
+      {
+        "range": [5, 6],
+        "label": "Reliable and Productive",
+        "description": "Fellow does assigned work well. Supervisor sees value. Some proactivity. Beginning to build systems or structures.",
+        "indicators": [
+          "Completing assigned tasks consistently",
+          "Showing up reliably",
+          "Some initiative",
+          "Beginning to earn trust"
+        ]
+      },
+      {
+        "range": [7, 8],
+        "label": "Proactive and Trusted",
+        "description": "Fellow proactively identifies and solves problems. Team trusts them. Building systems that outlast their presence.",
+        "indicators": [
+          "Identifying problems before asked",
+          "Team asking Fellow for help",
+          "Systems or processes being built",
+          "Supervisor mentions impact on operations"
+        ]
+      },
+      {
+        "range": [9, 10],
+        "label": "Transformational",
+        "description": "Fellow has changed how the organization operates. Impact is visible, measurable, and sustainable. Supervisor sees them as essential.",
+        "indicators": [
+          "Measurable business impact cited",
+          "Organization changed how it works",
+          "Supervisor uses superlatives",
+          "Fellow has built systems that run without them"
+        ]
+      }
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "presence_reliability",
+      "name": "Presence & Reliability",
+      "description": "Does the Fellow show up consistently and follow through on commitments?"
+    },
+    {
+      "id": "proactivity",
+      "name": "Proactivity",
+      "description": "Does the Fellow identify problems and act without being told?"
+    },
+    {
+      "id": "systems_building",
+      "name": "Systems Building",
+      "description": "Is the Fellow creating structures, processes, or tools that outlast them?"
+    },
+    {
+      "id": "team_relationships",
+      "name": "Team Relationships",
+      "description": "How does the Fellow interact with the team? Do people trust and include them?"
+    },
+    {
+      "id": "founder_relationship",
+      "name": "Founder / Supervisor Relationship",
+      "description": "How does the supervisor/owner perceive the Fellow? Is there trust?"
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "description": "Does the Fellow communicate clearly, escalate appropriately, and keep people informed?"
+    },
+    {
+      "id": "domain_learning",
+      "name": "Domain Learning",
+      "description": "Is the Fellow learning the business context quickly enough to contribute?"
+    },
+    {
+      "id": "impact_visibility",
+      "name": "Impact Visibility",
+      "description": "Can the supervisor point to specific things that changed because of the Fellow?"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "ops_efficiency",
+      "name": "Operational Efficiency",
+      "description": "Reduction in waste, rework, or delays in production/logistics"
+    },
+    {
+      "id": "accountability_systems",
+      "name": "Accountability Systems",
+      "description": "Daily review structures, MIS reports, checklists that track execution"
+    },
+    {
+      "id": "team_capability",
+      "name": "Team Capability",
+      "description": "Upskilling of floor workers or managers; training systems"
+    },
+    {
+      "id": "founder_leverage",
+      "name": "Founder Leverage",
+      "description": "Freeing up the founder's time by building delegation structures"
+    },
+    {
+      "id": "data_visibility",
+      "name": "Data Visibility",
+      "description": "Installing metrics, dashboards, or reporting that give leadership real-time information"
+    },
+    {
+      "id": "problem_resolution",
+      "name": "Problem Resolution Speed",
+      "description": "Faster identification and fixing of recurring operational problems"
+    },
+    {
+      "id": "vendor_customer_mgmt",
+      "name": "Vendor / Customer Management",
+      "description": "Improved coordination with suppliers or customers"
+    },
+    {
+      "id": "culture_discipline",
+      "name": "Culture & Discipline",
+      "description": "Improvements in punctuality, cleanliness, adherence to SOPs, team morale"
+    }
+  ]
+}
