@@ -92,34 +92,31 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Header */}
       <header className="header">
-        <div className="header-inner">
-          <div className="logo">
-            <span className="logo-eye">◉◉◉</span>
-            <div className="logo-text">
-              <span className="logo-title">TRINETHRA</span>
-              <span className="logo-sub">Supervisor Feedback Analyzer · DeepThought</span>
-            </div>
+        <div className="logo">
+          <span className="logo-eye">◉◉◉</span>
+          <div>
+            <span className="logo-title">TRINETHRA</span>
+            <span className="logo-sub">Supervisor Feedback Analyzer · DeepThought</span>
           </div>
-          <div className="header-badge">AI Draft · Human Decision</div>
         </div>
+        <div className="header-badge">AI Draft · Human Decision</div>
       </header>
 
       <main className="main">
         {/* Left: Input */}
         <section className="input-section">
-          <div className="section-label">01 — CONTEXT</div>
+          <div className="section-label">01 // Context Setup</div>
           <div className="meta-row">
             <input
               className="meta-input"
-              placeholder="Fellow name"
+              placeholder="Fellow Name"
               value={fellowName}
               onChange={e => setFellowName(e.target.value)}
             />
             <input
               className="meta-input"
-              placeholder="Supervisor name"
+              placeholder="Supervisor Name"
               value={supervisorName}
               onChange={e => setSupervisorName(e.target.value)}
             />
@@ -131,50 +128,31 @@ export default function App() {
             />
           </div>
 
-          <div className="section-label" style={{ marginTop: '1.5rem' }}>02 — TRANSCRIPT</div>
+          <div className="section-label" style={{ marginTop: '2.5rem' }}>02 // Raw Transcript</div>
           <textarea
             className="transcript-area"
-            placeholder="Paste the supervisor's call transcript here…"
+            placeholder="Paste the supervisor's call transcript here to begin analysis..."
             value={transcript}
             onChange={e => setTranscript(e.target.value)}
           />
 
           <div className="input-footer">
-            <div className="char-count">{transcript.length} chars</div>
+            <div className="char-count">{transcript.length} chars registered</div>
             <button
-              className={`run-btn ${loading ? 'loading' : ''}`}
+              className="run-btn"
               onClick={runAnalysis}
               disabled={loading || !transcript.trim()}
             >
-              {loading ? (
-                <><span className="spinner" /> Analyzing…</>
-              ) : (
-                '▶ Run Analysis'
-              )}
+              {loading ? 'Analyzing Data...' : 'Initiate Analysis'}
             </button>
           </div>
 
           {loading && (
             <div className="loading-status">
               <div className="loading-bar"><div className="loading-fill" /></div>
-              <span>{loadingStep}</span>
-            </div>
-          )}
-
-          {/* Sample transcripts */}
-          {samples.length > 0 && (
-            <div className="samples-box">
-              <div className="section-label">03 — LOAD SAMPLE</div>
-              <div className="sample-note">
-                ⚠ Each sample has a known trap — see if the tool scores correctly.
-              </div>
-              {samples.map(s => (
-                <button key={s.id} className="sample-btn" onClick={() => loadSample(s)}>
-                  <span className="sample-name">{s.fellow.name}</span>
-                  <span className="sample-company">{s.company.name} · {s.company.location}</span>
-                  <span className="sample-expected">Expected: {s.expectedScoreRange[0]}–{s.expectedScoreRange[1]}</span>
-                </button>
-              ))}
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent-glow)' }}>
+                 {loadingStep}
+              </span>
             </div>
           )}
         </section>
@@ -183,28 +161,20 @@ export default function App() {
         <section className="output-section">
           {!analysis && !error && (
             <div className="empty-state">
-              <div className="empty-icon">◉◉◉</div>
-              <p>Paste a transcript and run analysis.<br />The AI suggests — you decide.</p>
+              <div className="empty-icon">⌘</div>
+              <p>Awaiting transcript input.<br />The system interprets, you decide.</p>
             </div>
           )}
 
           {error && (
-            <div className="error-box">
-              <div className="error-title">⚠ Error</div>
-              <pre>{error}</pre>
+            <div className="error-box" style={{ color: '#ff4444', border: '1px solid #ff4444', padding: '2rem', borderRadius: '16px' }}>
+              <div className="panel-title" style={{ color: '#ff4444' }}>System Error</div>
+              <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'var(--font-mono)' }}>{error}</pre>
             </div>
           )}
 
           {analysis && (
             <div className="results">
-              {/* Meta bar */}
-              <div className="result-meta">
-                <span>{analysis.meta?.fellowName} @ {analysis.meta?.companyName}</span>
-                <span>Model: {analysis.meta?.model}</span>
-                <span>{new Date(analysis.meta?.analyzedAt).toLocaleTimeString()}</span>
-              </div>
-
-              {/* Tabs */}
               <div className="tabs">
                 {tabs.map(t => (
                   <button
@@ -223,26 +193,14 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Tab panels */}
               <div className="tab-content">
-                {activeTab === 'score' && <ScoreCard score={analysis.score} transcript={transcript} />}
-                {activeTab === 'evidence' && <EvidencePanel evidence={analysis.evidence} transcript={transcript} />}
+                {activeTab === 'score' && <ScoreCard score={analysis.score} />}
+                {activeTab === 'evidence' && <EvidencePanel evidence={analysis.evidence} />}
                 {activeTab === 'kpi' && <KpiPanel kpiMapping={analysis.kpiMapping} />}
                 {activeTab === 'gaps' && <GapsPanel gaps={analysis.gaps} />}
                 {activeTab === 'questions' && <QuestionsPanel questions={analysis.followUpQuestions} />}
                 {activeTab === 'bias' && <BiasPanel biases={analysis.biasesDetected} />}
               </div>
-
-              {/* Intern note */}
-              <div className="intern-note">
-                ✎ This is an AI-generated draft. Review each finding critically. Accept, reject, or edit before finalizing.
-              </div>
-
-              {/* Raw JSON toggle */}
-              <details className="raw-json">
-                <summary>View raw JSON</summary>
-                <pre>{JSON.stringify(analysis, null, 2)}</pre>
-              </details>
             </div>
           )}
         </section>

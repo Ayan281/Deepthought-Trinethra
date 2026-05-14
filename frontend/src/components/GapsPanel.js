@@ -22,13 +22,15 @@ const DIM_INFO = {
 export default function GapsPanel({ gaps = [] }) {
   return (
     <div>
-      <div className="panel-title">Assessment Gaps ({gaps.length} identified)</div>
-      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-        These dimensions are missing from the transcript. The intern should ask targeted follow-up questions to fill them.
+      <div className="panel-title">Analytical Gaps ({gaps.length} Detected)</div>
+      <div style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>
+        The following dimensions are structurally absent from the transcript. Utilize targeted inquiries to extract this data.
       </div>
 
       {gaps.length === 0 ? (
-        <div className="no-gaps">✓ All 4 assessment dimensions appear to be covered.</div>
+        <div style={{ padding: '2rem', background: 'rgba(0, 229, 255, 0.05)', border: '1px solid rgba(0, 229, 255, 0.2)', borderRadius: 'var(--radius-md)', color: 'var(--accent-glow-alt)', fontFamily: 'var(--font-mono)', textAlign: 'center' }}>
+          ✓ COMPREHENSIVE COVERAGE. All core assessment dimensions are present.
+        </div>
       ) : (
         <div className="gaps-list">
           {gaps.map((g, i) => {
@@ -38,8 +40,16 @@ export default function GapsPanel({ gaps = [] }) {
                 <div className="gap-dim">⚠ {info.label}</div>
                 <div className="gap-detail">{g.detail}</div>
                 {info.hint && (
-                  <div style={{ fontSize: '0.72rem', color: 'var(--red)', marginTop: '6px', fontStyle: 'italic', opacity: 0.8 }}>
-                    What to ask: {info.hint}
+                  <div style={{ 
+                    fontSize: '0.85rem', 
+                    color: 'var(--accent-glow)', 
+                    marginTop: '1rem', 
+                    fontFamily: 'var(--font-mono)',
+                    background: 'rgba(255, 94, 0, 0.1)',
+                    padding: '8px 12px',
+                    borderRadius: '4px'
+                  }}>
+                    <strong>INQUIRY VECTOR //</strong> {info.hint}
                   </div>
                 )}
               </div>
@@ -49,14 +59,19 @@ export default function GapsPanel({ gaps = [] }) {
       )}
 
       <div style={{
-        marginTop: '1.5rem',
-        borderTop: '1px solid var(--border)',
-        paddingTop: '1rem',
+        marginTop: '3rem',
+        border: '1px solid var(--border-glass)',
+        background: 'rgba(255,255,255,0.02)',
+        borderRadius: 'var(--radius-md)',
+        padding: '2rem',
       }}>
-        <div className="panel-title" style={{ marginBottom: '0.5rem' }}>Survivability Test</div>
-        <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-          The simplest diagnostic: <em style={{ color: 'var(--text)' }}>"If the Fellow left tomorrow, would any system they built continue running?"</em>
-          <br />YES → Systems Building (Layer 2) &nbsp;|&nbsp; NO → Task Execution only (Layer 1)
+        <div className="panel-title" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>The Survivability Diagnostic</div>
+        <div style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+          The ultimate test of impact: <em style={{ color: 'var(--text-main)', fontSize: '1.1rem' }}>"If the Fellow disappeared tomorrow, would the systems they built survive?"</em>
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+            <span style={{ color: 'var(--accent-glow-alt)' }}>YES → Systems Building (Layer 2)</span>
+            <span style={{ color: 'var(--accent-glow)' }}>NO → Task Execution Only (Layer 1)</span>
+          </div>
         </div>
       </div>
     </div>
